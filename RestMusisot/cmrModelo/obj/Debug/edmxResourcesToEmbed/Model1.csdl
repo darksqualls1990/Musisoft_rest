@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tributariaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AplicativoUsuario">
+    <Key>
+      <PropertyRef Name="idTipoAplicativo" />
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idTipoAplicativo" Type="Int32" Nullable="false" />
+    <Property Name="idPersona" Type="Int64" Nullable="false" />
+    <Property Name="estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_AplicativoUsuario_Persona" FromRole="AplicativoUsuario" ToRole="Persona" />
+    <NavigationProperty Name="TipoAplicativo" Relationship="Self.FK_AplicativoUsuario_TipoAplicativo" FromRole="AplicativoUsuario" ToRole="TipoAplicativo" />
+  </EntityType>
+  <EntityType Name="LoginUsuario">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="Int64" Nullable="false" />
+    <Property Name="usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="contrasena" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fechaRegistro" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Persona" Relationship="Self.FK_LoginUsuario_Persona1" FromRole="LoginUsuario" ToRole="Persona" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="identificacion" />
+    </Key>
+    <Property Name="identificacion" Type="Int64" Nullable="false" />
+    <Property Name="tipoIdentificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="primerNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="segundoNombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="primerApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="segundoApellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="AplicativoUsuario" Relationship="Self.FK_AplicativoUsuario_Persona" FromRole="Persona" ToRole="AplicativoUsuario" />
+    <NavigationProperty Name="LoginUsuario" Relationship="Self.FK_LoginUsuario_Persona1" FromRole="Persona" ToRole="LoginUsuario" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Codigo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tipo" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Valor" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Producto" FromRole="Producto" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Tercero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Identificacion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TipoIdentificacion" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+    <Property Name="Direccion" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="FechaCreacion" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="EsProveedor" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Venta" Relationship="Self.FK_Venta_Tercero" FromRole="Tercero" ToRole="Venta" />
+  </EntityType>
+  <EntityType Name="TipoAplicativo">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="estado" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AplicativoUsuario" Relationship="Self.FK_AplicativoUsuario_TipoAplicativo" FromRole="TipoAplicativo" ToRole="AplicativoUsuario" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdTercero" Type="Int64" Nullable="false" />
+    <Property Name="IdProducto" Type="Int64" Nullable="false" />
+    <Property Name="Cantidad" Type="Int32" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FechaCreacion" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Producto" Relationship="Self.FK_Venta_Producto" FromRole="Venta" ToRole="Producto" />
+    <NavigationProperty Name="Tercero" Relationship="Self.FK_Venta_Tercero" FromRole="Venta" ToRole="Tercero" />
+  </EntityType>
+  <Association Name="FK_AplicativoUsuario_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="AplicativoUsuario" Type="Self.AplicativoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="identificacion" />
+      </Principal>
+      <Dependent Role="AplicativoUsuario">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicativoUsuario_TipoAplicativo">
+    <End Role="TipoAplicativo" Type="Self.TipoAplicativo" Multiplicity="1" />
+    <End Role="AplicativoUsuario" Type="Self.AplicativoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAplicativo">
+        <PropertyRef Name="codigo" />
+      </Principal>
+      <Dependent Role="AplicativoUsuario">
+        <PropertyRef Name="idTipoAplicativo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginUsuario_Persona1">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="LoginUsuario" Type="Self.LoginUsuario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="identificacion" />
+      </Principal>
+      <Dependent Role="LoginUsuario">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Tercero">
+    <End Role="Tercero" Type="Self.Tercero" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tercero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="IdTercero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CrmTributariaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AplicativoUsuario" EntityType="Self.AplicativoUsuario" />
+    <EntitySet Name="LoginUsuario" EntityType="Self.LoginUsuario" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Tercero" EntityType="Self.Tercero" />
+    <EntitySet Name="TipoAplicativo" EntityType="Self.TipoAplicativo" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" />
+    <AssociationSet Name="FK_AplicativoUsuario_Persona" Association="Self.FK_AplicativoUsuario_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="AplicativoUsuario" EntitySet="AplicativoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicativoUsuario_TipoAplicativo" Association="Self.FK_AplicativoUsuario_TipoAplicativo">
+      <End Role="TipoAplicativo" EntitySet="TipoAplicativo" />
+      <End Role="AplicativoUsuario" EntitySet="AplicativoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginUsuario_Persona1" Association="Self.FK_LoginUsuario_Persona1">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="LoginUsuario" EntitySet="LoginUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Producto" Association="Self.FK_Venta_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Tercero" Association="Self.FK_Venta_Tercero">
+      <End Role="Tercero" EntitySet="Tercero" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

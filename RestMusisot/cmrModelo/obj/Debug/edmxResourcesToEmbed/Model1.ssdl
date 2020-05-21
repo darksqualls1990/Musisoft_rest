@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="tributariaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AplicativoUsuario">
+    <Key>
+      <PropertyRef Name="idTipoAplicativo" />
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idTipoAplicativo" Type="int" Nullable="false" />
+    <Property Name="idPersona" Type="bigint" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginUsuario">
+    <Key>
+      <PropertyRef Name="idPersona" />
+    </Key>
+    <Property Name="idPersona" Type="bigint" Nullable="false" />
+    <Property Name="usuario" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="contrasena" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="fechaRegistro" Type="datetime" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Persona">
+    <Key>
+      <PropertyRef Name="identificacion" />
+    </Key>
+    <Property Name="identificacion" Type="bigint" Nullable="false" />
+    <Property Name="tipoIdentificacion" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="primerNombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="segundoNombre" Type="varchar" MaxLength="50" />
+    <Property Name="primerApellido" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="segundoApellido" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Producto">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Codigo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Tipo" Type="nvarchar" MaxLength="15" />
+    <Property Name="Valor" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Cantidad" Type="int" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Tercero">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Identificacion" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TipoIdentificacion" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+    <Property Name="Direccion" Type="nvarchar" MaxLength="20" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="EsProveedor" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TipoAplicativo">
+    <Key>
+      <PropertyRef Name="codigo" />
+    </Key>
+    <Property Name="codigo" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="estado" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuario">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Venta">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdTercero" Type="bigint" Nullable="false" />
+    <Property Name="IdProducto" Type="bigint" Nullable="false" />
+    <Property Name="Cantidad" Type="int" Nullable="false" />
+    <Property Name="Total" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="FechaCreacion" Type="date" />
+  </EntityType>
+  <Association Name="FK_AplicativoUsuario_Persona">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="AplicativoUsuario" Type="Self.AplicativoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="identificacion" />
+      </Principal>
+      <Dependent Role="AplicativoUsuario">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_AplicativoUsuario_TipoAplicativo">
+    <End Role="TipoAplicativo" Type="Self.TipoAplicativo" Multiplicity="1" />
+    <End Role="AplicativoUsuario" Type="Self.AplicativoUsuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoAplicativo">
+        <PropertyRef Name="codigo" />
+      </Principal>
+      <Dependent Role="AplicativoUsuario">
+        <PropertyRef Name="idTipoAplicativo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LoginUsuario_Persona1">
+    <End Role="Persona" Type="Self.Persona" Multiplicity="1" />
+    <End Role="LoginUsuario" Type="Self.LoginUsuario" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Persona">
+        <PropertyRef Name="identificacion" />
+      </Principal>
+      <Dependent Role="LoginUsuario">
+        <PropertyRef Name="idPersona" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Producto">
+    <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Producto">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="IdProducto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Venta_Tercero">
+    <End Role="Tercero" Type="Self.Tercero" Multiplicity="1" />
+    <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tercero">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Venta">
+        <PropertyRef Name="IdTercero" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="tributariaModelStoreContainer">
+    <EntitySet Name="AplicativoUsuario" EntityType="Self.AplicativoUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginUsuario" EntityType="Self.LoginUsuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Persona" EntityType="Self.Persona" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tercero" EntityType="Self.Tercero" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TipoAplicativo" EntityType="Self.TipoAplicativo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AplicativoUsuario_Persona" Association="Self.FK_AplicativoUsuario_Persona">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="AplicativoUsuario" EntitySet="AplicativoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_AplicativoUsuario_TipoAplicativo" Association="Self.FK_AplicativoUsuario_TipoAplicativo">
+      <End Role="TipoAplicativo" EntitySet="TipoAplicativo" />
+      <End Role="AplicativoUsuario" EntitySet="AplicativoUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LoginUsuario_Persona1" Association="Self.FK_LoginUsuario_Persona1">
+      <End Role="Persona" EntitySet="Persona" />
+      <End Role="LoginUsuario" EntitySet="LoginUsuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Producto" Association="Self.FK_Venta_Producto">
+      <End Role="Producto" EntitySet="Producto" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Venta_Tercero" Association="Self.FK_Venta_Tercero">
+      <End Role="Tercero" EntitySet="Tercero" />
+      <End Role="Venta" EntitySet="Venta" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

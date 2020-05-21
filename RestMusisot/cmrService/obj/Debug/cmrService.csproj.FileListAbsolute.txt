@@ -1,0 +1,12 @@
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\cmrService.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\cmrService.pdb
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\cmrModelo.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\EntityFramework.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\cmrModelo.pdb
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\cmrModelo.dll.config
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\bin\Debug\EntityFramework.xml
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\obj\Debug\cmrService.csprojAssemblyReference.cache
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\obj\Debug\cmrService.csproj.CoreCompileInputs.cache
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\obj\Debug\cmrService.csproj.CopyComplete
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\obj\Debug\cmrService.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrService\obj\Debug\cmrService.pdb

@@ -1,0 +1,17 @@
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrServiceImpl.dll.config
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrServiceImpl.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrServiceImpl.pdb
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrModelo.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrService.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\EntityFramework.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrModelo.pdb
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrModelo.dll.config
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\cmrService.pdb
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\EntityFramework.xml
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\obj\Debug\cmrServiceImpl.csprojAssemblyReference.cache
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\obj\Debug\cmrServiceImpl.csproj.CoreCompileInputs.cache
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\obj\Debug\cmrServiceImpl.csproj.CopyComplete
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\obj\Debug\cmrServiceImpl.dll
+C:\Users\Hector Ivan\source\repos\RestMusisot\cmrServiceImpl\obj\Debug\cmrServiceImpl.pdb
